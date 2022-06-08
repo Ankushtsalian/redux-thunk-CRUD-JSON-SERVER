@@ -8,8 +8,8 @@ const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case type:
-      return;
+    // case type:
+    //   return;
     default:
       return state;
   }
