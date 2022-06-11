@@ -12,13 +12,23 @@ const AddUser = () => {
   });
   const { name, email, contact, address } = state;
 
+  const [error, setError] = useState();
+
+  const Navigate = useNavigate();
+
   const handleInput = (event) => {
     const { name, value } = event.target;
     console.log(state);
     setState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const Navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email || !contact || !address) {
+      setError("input field");
+    }
+  };
+
   return (
     <div>
       <Button
