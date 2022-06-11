@@ -9,11 +9,12 @@ import TableRow from "@mui/material/TableRow";
 // import Paper from "@mui/material/Paper";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { loadUsers } from "../redux/actions";
+import { deleteUsers, loadUsers } from "../redux/actions";
 // import { Button, ButtonGroup } from "@mui/material";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 //MUI COMP>>CUSTOMIZATION>>Customization
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -36,28 +37,42 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-//   createData("Eclair", 262, 16.0, 24, 6.0),
-//   createData("Cupcake", 305, 3.7, 67, 4.3),
-//   createData("Gingerbread", 356, 16.0, 49, 3.9),
-// ];
-
 const Home = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.data);
+
+  const Navigate = useNavigate();
 
   useEffect(() => {
     dispatch(loadUsers());
   }, [dispatch]);
 
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure wanted to delete user")) {
+      dispatch(deleteUsers(id));
+    }
+  };
   return (
     <div>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          "& > *": {
+            m: 1,
+          },
+        }}
+      >
+        <Button
+          style={{ marginRight: "5px" }}
+          color="primary"
+          variant="contained"
+          onClick={() => Navigate("/addUser")}
+        >
+          Add User
+        </Button>
+      </Box>
       <TableContainer
       //   component={Paper}
       >
@@ -109,6 +124,7 @@ const Home = () => {
                           <Button
                             style={{ marginRight: "5px" }}
                             color="primary"
+                            onClick={() => handleDelete(user.id)}
                           >
                             Delete
                           </Button>
