@@ -10,6 +10,8 @@ import TableRow from "@mui/material/TableRow";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadUsers } from "../redux/actions";
+import { Button, ButtonGroup } from "@mui/material";
+import { Box } from "@mui/system";
 
 //MUI COMP>>CUSTOMIZATION>>Customization
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -84,7 +86,26 @@ const Home = () => {
                   <StyledTableCell align="center">
                     {user.address}
                   </StyledTableCell>
-                  {/* <StyledTableCell align="right">{user.protein}</StyledTableCell> */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      "& > *": {
+                        m: 1,
+                      },
+                    }}
+                  >
+                    <ButtonGroup
+                      variant="contained"
+                      aria-label="outlined primary button group"
+                    >
+                      <Button style={{ marginRight: "5px" }} color="primary">
+                        Delete
+                      </Button>
+                      <Button color="secondary">Edit</Button>
+                    </ButtonGroup>
+                  </Box>
                 </StyledTableRow>
               ))}
           </TableBody>
