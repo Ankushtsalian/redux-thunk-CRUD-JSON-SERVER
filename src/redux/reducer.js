@@ -12,6 +12,10 @@ const userReducer = (state = initialState, action) => {
   switch (type) {
     case types.GET_USERS:
       return { ...state, users: payload, loading: false };
+
+    case type.DELETE_USERS:
+      return { ...state, loading: false };
+
     default:
       return state;
   }
