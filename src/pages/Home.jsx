@@ -10,7 +10,9 @@ import TableRow from "@mui/material/TableRow";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadUsers } from "../redux/actions";
-import { Button, ButtonGroup } from "@mui/material";
+// import { Button, ButtonGroup } from "@mui/material";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import { Box } from "@mui/system";
 
 //MUI COMP>>CUSTOMIZATION>>Customization
@@ -74,40 +76,49 @@ const Home = () => {
           </TableHead>
           <TableBody>
             {users &&
-              users.map((user) => (
-                <StyledTableRow key={user.name}>
-                  <StyledTableCell component="th" scope="row">
-                    {user.name}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{user.email}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    {user.contact}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {user.address}
-                  </StyledTableCell>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      "& > *": {
-                        m: 1,
-                      },
-                    }}
-                  >
-                    <ButtonGroup
-                      variant="contained"
-                      aria-label="outlined primary button group"
-                    >
-                      <Button style={{ marginRight: "5px" }} color="primary">
-                        Delete
-                      </Button>
-                      <Button color="secondary">Edit</Button>
-                    </ButtonGroup>
-                  </Box>
-                </StyledTableRow>
-              ))}
+              users.map((user) => {
+                return (
+                  <StyledTableRow key={user.id}>
+                    <StyledTableCell component="th" scope="row">
+                      {user.name}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {user.email}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {user.contact}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {user.address}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          "& > *": {
+                            m: 1,
+                          },
+                        }}
+                      >
+                        <ButtonGroup
+                          variant="contained"
+                          aria-label="outlined primary button group"
+                        >
+                          <Button
+                            style={{ marginRight: "5px" }}
+                            color="primary"
+                          >
+                            Delete
+                          </Button>
+                          <Button color="secondary">Edit</Button>
+                        </ButtonGroup>
+                      </Box>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </TableContainer>
