@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 // import Paper from "@mui/material/Paper";
-import { useSelwctor, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadUsers } from "../redux/actions";
 
@@ -32,9 +32,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+// function createData(name, calories, fat, carbs, protein) {
+//   return { name, calories, fat, carbs, protein };
+// }
 
 // const rows = [
 //   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
@@ -45,12 +45,11 @@ function createData(name, calories, fat, carbs, protein) {
 // ];
 
 const Home = () => {
-  // const {}
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadUsers);
-  }, []);
+    dispatch(loadUsers());
+  }, [dispatch]);
 
   return (
     <div>
