@@ -39,7 +39,7 @@ export const deleteUsers = (id) => {
   };
 };
 
-export const addUser = (user) => {
+export const addAnUser = (user) => {
   return function (dispatch) {
     axios
       .post(`${process.env.REACT_APP_API}`, user)

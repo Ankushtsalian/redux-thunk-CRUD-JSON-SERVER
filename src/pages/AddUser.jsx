@@ -2,6 +2,8 @@ import { Box, Button, TextField } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addAnUser } from "../redux/actions";
 
 const AddUser = () => {
   const [state, setState] = useState({
@@ -12,6 +14,7 @@ const AddUser = () => {
   });
   const { name, email, contact, address } = state;
 
+  const dispatch = useDispatch();
   const [error, setError] = useState();
 
   const Navigate = useNavigate();
@@ -26,6 +29,10 @@ const AddUser = () => {
     e.preventDefault();
     if (!name || !email || !contact || !address) {
       setError("input field");
+    } else {
+      dispatch(addAnUser(state));
+      Navigate("/");
+      setError("");
     }
   };
 
@@ -39,8 +46,10 @@ const AddUser = () => {
       >
         Go Back
       </Button>
+      {error && <h3 style={{ color: "red" }}>{error}</h3>}
       <h2>Add User</h2>
       <Box
+        onSubmit={handleSubmit}
         component="form"
         sx={{
           marginTop: "100px",

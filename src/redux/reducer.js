@@ -16,6 +16,9 @@ const userReducer = (state = initialState, action) => {
     case type.DELETE_USERS:
       return { ...state, loading: false };
 
+    case type.ADD_USER:
+      return { ...state, loading: false };
+
     default:
       return state;
   }
