@@ -46,6 +46,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Home = () => {
   const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.data);
 
   useEffect(() => {
     dispatch(loadUsers());
@@ -70,17 +71,22 @@ const Home = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row">
-                  {row.name}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                <StyledTableCell align="right">{row.protein}</StyledTableCell>
-              </StyledTableRow>
-            ))} */}
+            {users &&
+              users.map((user) => (
+                <StyledTableRow key={user.name}>
+                  <StyledTableCell component="th" scope="row">
+                    {user.name}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{user.email}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    {user.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {user.address}
+                  </StyledTableCell>
+                  {/* <StyledTableCell align="right">{user.protein}</StyledTableCell> */}
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
